@@ -1,6 +1,6 @@
-class TestPySpark:
+class LocalPySpark:
     """ ... """
-    
+
     sc = None
 
     def __init__(self, *args, **kwargs):
@@ -15,7 +15,7 @@ class TestPySpark:
         except Exception as err:
             print(err)
 
-    def test_open_file(self, iterator):
+    def calculate_iterator(self, iterator):
         ''' ... '''
         from pyspark import SparkFiles
 
@@ -30,5 +30,5 @@ class TestPySpark:
 
 
 if __name__ == "__main__":
-    pys = TestPySpark()
-    print(pys.test_open_file([1,2,3,4]))
+    pys = LocalPySpark()
+    print(pys.calculate_iterator([1,2,3,4]))
