@@ -28,7 +28,18 @@ class SimplePySparkSubmit:
             file_val = int(test_file.readline())
         return [x * file_val for x in iterator]
 
+    def test_map_reduct(self):
+        ''' ... '''
+        try:
+            stringRDD = self.sc.parallelize(['Apple','Orange','Grape','Banana','Apple'])
+            print (stringRDD.map(lambda f:(f, 1)).reduceByKey(lambda f,n :n + 1).collect())
+        except:
+            print("Sorry")
+
+import os
+os.environ["PYSPARK_PYTHON"]="/usr/bin/python36"
 
 if __name__ == "__main__":
-    pys = SimplePySparkSubmit("spark://192.168.56.102:7077")
-    print(pys.calculate_iterator([1,2,3,4]))
+    pys = SimplePySparkSubmit("local")
+    #print(pys.calculate_iterator([1,2,3,4]))
+    pys.test_map_reduct()
