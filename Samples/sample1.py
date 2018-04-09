@@ -1,13 +1,13 @@
-class LocalPySpark:
+class SimplePySparkSubmit:
     """ ... """
 
     sc = None
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, master="local"):
         ''' ... '''
         from pyspark import SparkConf, SparkContext
         conf = (SparkConf()
-                .setMaster("local")
+                .setMaster(master)
                 .setAppName("My app")
                 .set("spark.executor.memory", "1g"))
         try:
@@ -30,5 +30,5 @@ class LocalPySpark:
 
 
 if __name__ == "__main__":
-    pys = LocalPySpark()
+    pys = SimplePySparkSubmit("spark://192.168.56.102:7077")
     print(pys.calculate_iterator([1,2,3,4]))
