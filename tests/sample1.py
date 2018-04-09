@@ -2,7 +2,7 @@ from unittest import TestCase
 
 import sys
 
-class TestPySpark(TestCase):
+class SimplePySparkSubmit:
     """ ... """
 
     sc = None
@@ -36,8 +36,14 @@ class TestPySpark(TestCase):
         ''' ... '''
         try:
             stringRDD = self.sc.parallelize(['Apple','Orange','Grape','Banana','Apple'])
-            print (stringRDD.collect())
+            print (stringRDD.map(lambda f:(f, 1)).reduceByKey(lambda f,n :n + 1).collect())
         except:
             print("Sorry")
 
-        #stringRDD.map((lambda f:(f, 1))).reduceByKey(lambda f,n :n + 1)
+import os
+os.environ["PYSPARK_PYTHON"]="/usr/bin/python36"
+
+if __name__ == "__main__":
+    pys = SimplePySparkSubmit("local")
+    print(pys.calculate_iterator([1,2,3,4]))
+    pys.test_map_reduct()
