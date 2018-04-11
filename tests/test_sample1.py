@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+import sys
+
 class TestPySpark(TestCase):
     """ ... """
     
@@ -26,3 +28,13 @@ class TestPySpark(TestCase):
         with open(SparkFiles.get("test.txt")) as test_file:
             file_val = int(test_file.readline())
         return [x * file_val for x in iterator]
+
+    def test_map_reduct(self):
+        ''' ... '''
+        try:
+            stringRDD = self.sc.parallelize(['Apple','Orange','Grape','Banana','Apple'])
+            print (stringRDD.collect())
+        except:
+            print("Sorry")
+
+        #stringRDD.map((lambda f:(f, 1))).reduceByKey(lambda f,n :n + 1)
