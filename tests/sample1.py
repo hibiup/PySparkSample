@@ -23,7 +23,7 @@ class TestPySpark(TestCase):
         ''' ... '''
         from pyspark import SparkFiles
 
-        path = "data/test.txt"
+        path = "tests/data/test.txt"
         with open(path, "w") as test_file:
             _ = test_file.write("100")
         self.sc.addFile(path)
