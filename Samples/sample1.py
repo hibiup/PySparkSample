@@ -4,23 +4,26 @@ import sys
 
 class TestPySpark(TestCase):
     """ ... """
-    
+
     sc = None
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, master="local"):
         ''' ... '''
         from pyspark import SparkConf, SparkContext
         conf = (SparkConf()
-                .setMaster("local")
+                .setMaster(master)
                 .setAppName("My app")
                 .set("spark.executor.memory", "1g"))
-        self.sc = SparkContext(conf = conf)
+        try:
+            self.sc = SparkContext(conf = conf)
+        except Exception as err:
+            print(err)
 
-    def test_open_file(self, iterator):
+    def calculate_iterator(self, iterator):
         ''' ... '''
         from pyspark import SparkFiles
 
-        path = "tests/data/test.txt"
+        path = "data/test.txt"
         with open(path, "w") as test_file:
             _ = test_file.write("100")
         self.sc.addFile(path)
